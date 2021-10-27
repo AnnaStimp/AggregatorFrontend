@@ -1,12 +1,37 @@
+@import '@/scss/main.scss';
+
 .header {
-    background: #000;
+    background: $mainColor1;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+
+    & svg {
+        cursor: pointer;
+    }
 
     &__catalog {
         display: flex;
+        align-items: center;
+        cursor: pointer;
 
-        & img {
+        & svg {
             width: 30px;
             height: 30px;
         }
+
+        & p {
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 40px;
+            color: $mainColor2;
+            margin-left: 10px;
+        }
+    }
+
+    &__center {
+        margin-right: 50px;
     }
 }
