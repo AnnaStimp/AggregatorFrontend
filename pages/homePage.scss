@@ -1,0 +1,101 @@
+@import '@/scss/colors.scss';
+
+.homePage {
+    width: 100%;
+
+    &__sliderWrap {
+        width: 100%;
+        height: 500px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__slide {
+            width: 100%;
+            height: 100%;
+
+            & img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            &__inf {
+                position: absolute;
+                right: 21%;
+                bottom: 27%;
+                width: 360px;
+
+                & h3 {
+                    font-weight: 400;
+                    font-size: 36px;
+                    line-height: 40px;
+                }
+
+                & p {
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 40px;
+                }
+
+                &__btn {
+                    margin-top: 12px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    cursor: pointer;
+                    width: 267px;
+                    height: 58px;
+                    background: $mainColor1;
+                    padding: 0 19px 0 13px;
+                    transition: all .3s;
+
+                    & p {
+                        font-weight: 500;
+                        font-size: 24px;
+                        line-height: 40px;
+                    }
+
+                    & svg {
+                        width: 24px;
+                        height: 34px;
+
+                        & g path {
+                            transition: all .3s;
+                        }
+                    }
+
+                    &:hover {
+                        transition: all .3s;
+                        color: #fff;
+
+                        & svg g path {
+                            transition: all .3s;
+                            fill: #fff;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__buttons {
+            display: flex;
+            position: absolute;
+            bottom: 16px;
+
+            &__btn {
+                width: 10px;
+                height: 10px;
+                background: transparent;
+                border: 2px solid $mainColor1;
+                border-radius: 50%;
+                margin-right: 5px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
