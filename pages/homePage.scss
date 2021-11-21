@@ -10,69 +10,81 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        overflow: hidden;
 
-        &__slide {
+        &__slider {
             width: 100%;
             height: 100%;
+            display: flex;
+            align-items: center;
+            transform: translateX(0);
+            transition: ease .3s;
 
-            & img {
+            &__slide {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
-            }
-
-            &__inf {
-                position: absolute;
-                right: 21%;
-                bottom: 27%;
-                width: 360px;
-
-                & h3 {
-                    font-weight: 400;
-                    font-size: 36px;
-                    line-height: 40px;
+                flex: 0 0 100%;
+                position: relative;
+    
+                & img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
                 }
-
-                & p {
-                    font-weight: 500;
-                    font-size: 18px;
-                    line-height: 40px;
-                }
-
-                &__btn {
-                    margin-top: 12px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    cursor: pointer;
-                    width: 267px;
-                    height: 58px;
-                    background: $mainColor1;
-                    padding: 0 19px 0 13px;
-                    transition: all .3s;
-
-                    & p {
-                        font-weight: 500;
-                        font-size: 24px;
+    
+                &__inf {
+                    position: absolute;
+                    right: 21%;
+                    bottom: 27%;
+                    width: 360px;
+    
+                    & h3 {
+                        font-weight: 400;
+                        font-size: 36px;
                         line-height: 40px;
                     }
-
-                    & svg {
-                        width: 24px;
-                        height: 34px;
-
-                        & g path {
-                            transition: all .3s;
-                        }
+    
+                    & p {
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 40px;
                     }
-
-                    &:hover {
+    
+                    &__btn {
+                        margin-top: 12px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        cursor: pointer;
+                        width: 267px;
+                        height: 58px;
+                        background: $mainColor1;
+                        padding: 0 19px 0 13px;
                         transition: all .3s;
-                        color: #fff;
-
-                        & svg g path {
+    
+                        & p {
+                            font-weight: 500;
+                            font-size: 24px;
+                            line-height: 40px;
+                        }
+    
+                        & svg {
+                            width: 24px;
+                            height: 34px;
+    
+                            & g path {
+                                transition: all .3s;
+                            }
+                        }
+    
+                        &:hover {
                             transition: all .3s;
-                            fill: #fff;
+                            color: #fff;
+    
+                            & svg g path {
+                                transition: all .3s;
+                                fill: #fff;
+                            }
                         }
                     }
                 }
@@ -85,15 +97,24 @@
             bottom: 16px;
 
             &__btn {
-                width: 10px;
-                height: 10px;
+                width: 12px;
+                height: 12px;
                 background: transparent;
-                border: 2px solid $mainColor1;
+                border: 3px solid $mainColor1;
                 border-radius: 50%;
                 margin-right: 5px;
 
                 &:last-child {
                     margin-right: 0;
+                }
+
+                &:hover {
+                    background: $mainColor1;
+                    cursor: pointer;
+                }
+
+                &.active {
+                    background: $mainColor1;
                 }
             }
         }
