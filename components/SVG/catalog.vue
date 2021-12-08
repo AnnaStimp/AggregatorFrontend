@@ -7,6 +7,6 @@
 
 <script>
 export default {
-  name: 'Catalog'
+  name: 'CatalogSvg'
 }
 </script>

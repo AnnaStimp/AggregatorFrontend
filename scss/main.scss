@@ -7,3 +7,9 @@
     font-family: 'Podkova';
     font-style: normal;
 }
+
+body {
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+}
