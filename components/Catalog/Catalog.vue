@@ -1,9 +1,9 @@
 <template>
   <div class="catalog">
     <div class="catalog__category">
-      <p>макияж</p>
-      <p>уход</p>
-      <p>аптечная косметика</p>
+      <NuxtLink to="/makeup"><p>макияж</p></NuxtLink>
+      <NuxtLink to="/care"><p>уход</p></NuxtLink>
+      <NuxtLink to="/pharmcosmetics"><p>аптечная косметика</p></NuxtLink>
     </div>
     <div class="catalog__commercial">
       <div class="catalog__commercial__item">

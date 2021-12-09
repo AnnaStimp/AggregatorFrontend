@@ -9,6 +9,7 @@
         <CatalogSvg />
         <p>Каталог</p>
       </div>
+      <NuxtLink to="/"><IconOfPage /></NuxtLink>
       <div class="header__likes">
         <Like />
       </div>
@@ -24,12 +25,14 @@ import './header.scss'
 
 import CatalogSvg from '@/components/SVG/catalog.vue'
 import Like from '@/components/SVG/like.vue'
+import IconOfPage from '@/components/SVG/iconOfPage.vue'
 
 export default {
   name: 'Header',
   components: {
     CatalogSvg,
-    Like
+    Like,
+    IconOfPage
   },
   data () {
     return {

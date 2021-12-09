@@ -37,7 +37,8 @@
         </div>
         <div class="homePage__novelty__sliderWrap__slider">
           <div class="homePage__novelty__sliderWrap__slider__slide">
-            <div
+            <NuxtLink
+              :to="`/product/${index}`"
               v-for="(product, index) in frontNovely"
               :key="index"
               class="homePage__novelty__sliderWrap__slider__slide__product"
@@ -51,7 +52,7 @@
                 <h3 class="homePage__novelty__sliderWrap__slider__slide__product__inf__name">OMOROVICZA midnight radiance mask</h3>
                 <p class="homePage__novelty__sliderWrap__slider__slide__product__inf__price">6 916 ₽</p>
               </div>
-            </div>
+            </NuxtLink>
           </div>
         </div>
       </div>
