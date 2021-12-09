@@ -9,7 +9,7 @@
         <CatalogSvg />
         <p>Каталог</p>
       </div>
-      <NuxtLink to="/"><IconOfPage /></NuxtLink>
+      <NuxtLink to="/" class="header__icon"><IconOfPage /></NuxtLink>
       <div class="header__likes">
         <Like />
       </div>
