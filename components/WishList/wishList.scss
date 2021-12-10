@@ -1,0 +1,144 @@
+@import '@/scss/colors.scss';
+
+.wishList {
+    position: fixed;
+    right: 0;
+    top: 60px;
+    width: 45%;
+    height: calc(100vh - 60px);
+    background: $mainColor1WithOpacity;
+    mix-blend-mode: normal;
+    backdrop-filter: blur(20px);
+    z-index: 1;
+    transition: ease .5s;
+    overflow: hidden;
+
+    padding: 25px 30px 25px 60px;
+
+    height: 0;
+    padding: 0;
+    pointer-events: none;
+
+    &.open {
+        height: calc(100vh - 60px);
+        padding: 25px 30px 25px 60px;
+        pointer-events: auto;
+    }
+
+    &__header {
+        margin-bottom: 45px;
+
+        & h2 {
+            font-weight: 700;
+            font-size: 60px;
+            line-height: 66px;
+            text-transform: uppercase;
+            color: $mainColor3;
+        }
+    }
+
+    &__list {
+        overflow-y: scroll;
+        height: calc(100% - 111px);
+
+        &::-webkit-scrollbar {
+            width: 0;
+        }
+        
+        &__product {
+            display: flex;
+            align-items: center;
+            height: 341px;
+            margin-bottom: 114px;
+            text-decoration: none;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &__img {
+                height: 100%;
+                width: 364px;
+                object-fit: cover;
+                margin-right: 23px;
+                cursor: pointer;
+            }
+
+            &__inf {
+                height: 100%;
+                width: 364px;
+
+                &__name {
+                    margin-bottom: 60px;
+                    cursor: pointer;
+
+                    &:hover {
+                        & p, & h3 {
+                            color: $mainColor3WithOpacity;
+                        }
+                    }
+
+                    & p {
+                        font-weight: 600;
+                        font-size: 20px;
+                        line-height: 22px;
+                        text-transform: uppercase;
+                        color: $mainColor3;
+                        transition: all .3s;
+                    }
+
+                    & h3 {
+                        font-weight: bold;
+                        font-size: 30px;
+                        line-height: 33px;
+                        color: $mainColor3;
+                        margin-top: 5px;
+                        transition: all .3s;
+                    }
+                }
+
+                &__price {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    & p {
+                        font-weight: bold;
+                        font-size: 30px;
+                        line-height: 30px;
+                        color: $mainColor3;
+                    }
+
+                    &__btn {
+                        width: 54px;
+                        height: 50px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: $mainColor3;
+                        margin-left: 30px;
+                        cursor: pointer;
+                        transition: all .3s;
+
+                        & svg {
+                            & path {
+                                transition: all .3s;
+                            }
+                        }
+    
+                        &:hover {
+                            background: $mainColor1;
+    
+                            & svg {
+                                & path {
+                                    fill: $mainColor3;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

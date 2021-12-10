@@ -3,19 +3,27 @@
     <div class="header">
       <div
         class="header__catalog"
-        @mouseover="hoverCatalog = true"
+        @mouseover="hoverCatalog = true; openWishList = false"
         @mouseleave="hoverCatalog = false"
       >
         <CatalogSvg />
         <p>Каталог</p>
       </div>
       <NuxtLink to="/" class="header__icon"><IconOfPage /></NuxtLink>
-      <div class="header__likes">
-        <Like />
+      <div
+        class="header__likes"
+        @click="openWishList = !openWishList"
+      >
+        <Like v-if="!openWishList"/>
+        <BrokenHeart v-if="openWishList"/>
       </div>
     </div>
     <Catalog
       :class="{hover: hoverCatalog}"
+    />
+    <WishList
+      :class="{open: openWishList}"
+      :openWishList='openWishList'
     />
   </div>
 </template>
@@ -25,6 +33,7 @@ import './header.scss'
 
 import CatalogSvg from '@/components/SVG/catalog.vue'
 import Like from '@/components/SVG/like.vue'
+import BrokenHeart from '@/components/SVG/brokenHeart.vue'
 import IconOfPage from '@/components/SVG/iconOfPage.vue'
 
 export default {
@@ -32,11 +41,13 @@ export default {
   components: {
     CatalogSvg,
     Like,
-    IconOfPage
+    IconOfPage,
+    BrokenHeart
   },
   data () {
     return {
-      hoverCatalog: false
+      hoverCatalog: false,
+      openWishList: false
     }
   }
 }

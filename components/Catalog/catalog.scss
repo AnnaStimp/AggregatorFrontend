@@ -19,18 +19,18 @@
 
     height: 0;
     padding: 0;
-    user-select: none;
+    pointer-events: none;
 
     &.hover {
         height: calc(100vh - 60px);
-        user-select: auto;
+        pointer-events: auto;
         padding: 45px 40px 85px 75px;
     }
 
     &:hover {
         height: calc(100vh - 60px);
-        user-select: auto;
         padding: 45px 40px 85px 75px;
+        pointer-events: auto;
     }
 
     &__category {

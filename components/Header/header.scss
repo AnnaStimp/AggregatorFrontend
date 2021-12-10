@@ -50,4 +50,15 @@
     &__icon {
         margin-right: 160px;
     }
+
+    &__likes {
+        & svg {
+            width: 40px;
+            height: 40px;
+
+            & path {
+                fill: $mainColor2;
+            }
+        }
+    }
 }
