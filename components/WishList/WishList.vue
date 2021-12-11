@@ -10,9 +10,9 @@
         :key="i"
         class="wishList__list__product"
       >
-        <img class="wishList__list__product__img" src="@/assets/images/Products/product4.png" alt="">
+        <img class="wishList__list__product__img" @click="close()" src="@/assets/images/Products/product4.png" alt="">
         <div class="wishList__list__product__inf">
-          <div class="wishList__list__product__inf__name">
+          <div class="wishList__list__product__inf__name" @click="close()">
             <p>парфюмерная вода</p>
             <h3>PAGLIERI 1876 florentia</h3>
           </div>
@@ -37,11 +37,12 @@ export default {
   name: 'WishList',
   components: {
     BrokenHeart
+  },
+  props: ['openWishList'],
+  methods: {
+    close () {
+      this.$emit('update:openWishList', false)
+    }
   }
-  // props: {
-  //   openWishList: {
-  //     type: Boolean
-  //   }
-  // }
 }
 </script>

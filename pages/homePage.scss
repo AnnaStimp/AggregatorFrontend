@@ -79,11 +79,11 @@
     
                         &:hover {
                             transition: all .3s;
-                            color: #fff;
+                            color: $mainColor2;
     
                             & svg g path {
                                 transition: all .3s;
-                                fill: #fff;
+                                fill: $mainColor2;
                             }
                         }
                     }

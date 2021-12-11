@@ -23,7 +23,7 @@
     />
     <WishList
       :class="{open: openWishList}"
-      :openWishList='openWishList'
+      :openWishList.sync='openWishList'
     />
   </div>
 </template>

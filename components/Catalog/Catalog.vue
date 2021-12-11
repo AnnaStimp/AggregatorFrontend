@@ -1,9 +1,9 @@
 <template>
   <div class="catalog">
     <div class="catalog__category">
-      <NuxtLink to="/makeup"><p>макияж</p></NuxtLink>
-      <NuxtLink to="/care"><p>уход</p></NuxtLink>
-      <NuxtLink to="/pharmcosmetics"><p>аптечная косметика</p></NuxtLink>
+      <NuxtLink to="/makeup"><p @click="close()">макияж</p></NuxtLink>
+      <NuxtLink to="/care"><p @click="close()">уход</p></NuxtLink>
+      <NuxtLink to="/pharmcosmetics"><p @click="close()">аптечная косметика</p></NuxtLink>
     </div>
     <div class="catalog__commercial">
       <div class="catalog__commercial__item">
@@ -39,6 +39,14 @@ export default {
   components: {
     Inst,
     Git
+  },
+  methods: {
+    close () {
+      document.querySelector('.catalog').classList.add('nohover')
+      setTimeout(() => {
+        document.querySelector('.catalog').classList.remove('nohover')
+      }, 30)
+    }
   }
 }
 </script>
