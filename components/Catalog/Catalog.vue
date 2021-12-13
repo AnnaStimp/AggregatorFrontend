@@ -1,9 +1,13 @@
 <template>
   <div class="catalog">
     <div class="catalog__category">
-      <NuxtLink to="/makeup"><p @click="close()">макияж</p></NuxtLink>
-      <NuxtLink to="/care"><p @click="close()">уход</p></NuxtLink>
-      <NuxtLink to="/pharmcosmetics"><p @click="close()">аптечная косметика</p></NuxtLink>
+      <NuxtLink
+        v-for="category in categorys"
+        :key="category.id"
+        :to="`/${category.name}`"
+      >
+        <p @click="close()">{{ category.name }}</p>
+      </NuxtLink>
     </div>
     <div class="catalog__commercial">
       <div class="catalog__commercial__item">
@@ -40,12 +44,32 @@ export default {
     Inst,
     Git
   },
+  data () {
+    return {
+      categorys: []
+    }
+  },
+  mounted () {
+    this.getCategory()
+  },
   methods: {
     close () {
       document.querySelector('.catalog').classList.add('nohover')
       setTimeout(() => {
         document.querySelector('.catalog').classList.remove('nohover')
       }, 30)
+    },
+    async getCategory () {
+      const response = await fetch('http://127.0.0.1:5000/category')
+
+      const data = await response.json()
+      const res = []
+
+      for (let i = 0; i < data.length; i++) {
+        res.push({ id: data[i][0], name: data[i][1] })
+      }
+
+      this.categorys = res
     }
   }
 }

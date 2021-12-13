@@ -38,19 +38,19 @@
         <div class="homePage__novelty__sliderWrap__slider">
           <div class="homePage__novelty__sliderWrap__slider__slide">
             <NuxtLink
-              :to="`/product/${index}`"
+              :to="`/product/${product.id}`"
               v-for="(product, index) in frontNovely"
-              :key="index"
+              :key="product.id"
               class="homePage__novelty__sliderWrap__slider__slide__product"
             >
-              <img :src="require(`@/assets/images/Novels/product${product}.png`)" alt="">
+              <img :src="product.img" alt="">
               <div
                 class="homePage__novelty__sliderWrap__slider__slide__product__inf"
                 :class="{left: index >= 2}"
               >
-                <p class="homePage__novelty__sliderWrap__slider__slide__product__inf__about">НОЧНАЯ МАСКА ДЛЯ ЛИЦА</p>
-                <h3 class="homePage__novelty__sliderWrap__slider__slide__product__inf__name">OMOROVICZA midnight radiance mask</h3>
-                <p class="homePage__novelty__sliderWrap__slider__slide__product__inf__price">6 916 ₽</p>
+                <p class="homePage__novelty__sliderWrap__slider__slide__product__inf__about">{{ product.about }}</p>
+                <h3 class="homePage__novelty__sliderWrap__slider__slide__product__inf__name">{{ product.name }}</h3>
+                <p class="homePage__novelty__sliderWrap__slider__slide__product__inf__price">{{ product.price }} ₽</p>
               </div>
             </NuxtLink>
           </div>
@@ -75,10 +75,12 @@ export default {
       slides: [1, 2, 3, 4],
       frontSlide: 0,
       timer: 0,
-      frontNovely: [1, 2, 3, 4]
+      frontNovely: [],
+      pictures: []
     }
   },
   mounted () {
+    this.getNovely()
     this.timer = this.slideInterval()
   },
   destroyed () {
@@ -109,6 +111,20 @@ export default {
       }, 5000)
 
       return time
+    },
+    parseToFloat (str) {
+      return parseFloat(str.split('?')[0].replace(',', '.'))
+    },
+    async getNovely () {
+      const response = await fetch('http://127.0.0.1:5000/new-product')
+
+      const data = await response.json()
+      const res = []
+      for (let i = 0; i < data.length; i++) {
+        res.push({ id: data[i][0], name: data[i][1], about: data[i][2], price: this.parseToFloat(data[i][3]), img: require(`@/assets/images/Products/${data[i][4]}.png`) })
+      }
+      console.log(res)
+      this.frontNovely = res
     }
   }
 }

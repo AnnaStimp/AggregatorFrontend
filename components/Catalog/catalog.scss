@@ -50,6 +50,7 @@
             line-height: 40px;
             color: $mainColor2;
             cursor: pointer;
+            text-transform: lowercase;
 
             &:hover {
                 color: $mainColor3;
