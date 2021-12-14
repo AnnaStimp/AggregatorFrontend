@@ -2,11 +2,11 @@
   <div class="catalog">
     <div class="catalog__category">
       <NuxtLink
-        v-for="category in categorys"
+        v-for="category in $store.state.category.categorys"
         :key="category.id"
         :to="`/${category.name}`"
       >
-        <p @click="close()">{{ category.name }}</p>
+        <p @click="close(); $store.commit('choiceCategory', category)">{{ category.name }}</p>
       </NuxtLink>
     </div>
     <div class="catalog__commercial">
@@ -27,7 +27,7 @@
     </div>
     <div class="catalog__mySocials">
       <a href="https://www.instagram.com/annastimp/?hl=ru" target="_blank"><Inst /></a>
-      <a href="https://github.com/AnnaStimp"><Git /></a>
+      <a href="https://github.com/AnnaStimp" target="_blank"><Git /></a>
     </div>
   </div>
 </template>
@@ -66,10 +66,10 @@ export default {
       const res = []
 
       for (let i = 0; i < data.length; i++) {
-        res.push({ id: data[i][0], name: data[i][1] })
+        res.push({ id: data[i][0], name: data[i][1], title: data[i][2], img: data[i][3] })
       }
 
-      this.categorys = res
+      this.$store.commit('addCategorys', res)
     }
   }
 }
