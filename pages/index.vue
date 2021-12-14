@@ -83,6 +83,7 @@ export default {
     this.getNovely()
     this.getProducts()
     this.timer = this.slideInterval()
+    console.log(document.cookie)
   },
   destroyed () {
     if (this.timer) {

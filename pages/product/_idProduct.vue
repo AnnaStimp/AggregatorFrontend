@@ -11,7 +11,7 @@
       <div class="product__inf__aboutPrice">
         <div class="product__inf__aboutPrice__price">
           <p>{{ product.price }} ₽</p>
-          <div class="product__inf__aboutPrice__price__btn">
+          <div class="product__inf__aboutPrice__price__btn" @click="likeProduct()">
             <Like />
           </div>
         </div>
@@ -65,6 +65,23 @@ export default {
   methods: {
     parseToFloat (str) {
       return parseFloat(str.split('?')[0].replace(',', '.'))
+    },
+    likeProduct () {
+      if (!localStorage.getItem('likeProducts')) {
+        localStorage.setItem('likeProducts', JSON.stringify([]))
+      }
+
+      const like = JSON.parse(localStorage.getItem('likeProducts'))
+
+      for (let i = 0; i < like.length; i++) {
+        if (like[i].id === this.product.id) {
+          return
+        }
+      }
+
+      like.push(this.product)
+      localStorage.setItem('likeProducts', JSON.stringify(like))
+      console.log(localStorage.getItem('likeProducts'))
     },
     async getInfAboutProduct () {
       const response = await fetch(`http://127.0.0.1:5000/product/${this.$route.params.idProduct}`)

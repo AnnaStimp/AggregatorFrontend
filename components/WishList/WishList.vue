@@ -5,19 +5,19 @@
     </div>
     <div class="wishList__list">
       <NuxtLink
-        :to="`/product/${i}`"
-        v-for="i in 8"
-        :key="i"
+        :to="`/product/${product.id}`"
+        v-for="product in wishList"
+        :key="product.id"
         class="wishList__list__product"
       >
-        <img class="wishList__list__product__img" @click="close()" src="@/assets/images/Products/product4.png" alt="">
+        <img class="wishList__list__product__img" @click="close()" :src="product.img" alt="">
         <div class="wishList__list__product__inf">
           <div class="wishList__list__product__inf__name" @click="close()">
-            <p>парфюмерная вода</p>
-            <h3>PAGLIERI 1876 florentia</h3>
+            <p>{{ product.about }}</p>
+            <h3>{{ product.name }}</h3>
           </div>
           <div class="wishList__list__product__inf__price">
-            <p>12 456 ₽</p>
+            <p>{{ product.price }} ₽</p>
             <div class="wishList__list__product__inf__price__btn">
               <BrokenHeart />
             </div>
@@ -39,9 +39,20 @@ export default {
     BrokenHeart
   },
   props: ['openWishList'],
+  data () {
+    return {
+      wishList: []
+    }
+  },
+  mounted () {
+    this.getWishList()
+  },
   methods: {
     close () {
       this.$emit('update:openWishList', false)
+    },
+    getWishList () {
+      this.wishList = JSON.parse(localStorage.getItem('likeProducts'))
     }
   }
 }
