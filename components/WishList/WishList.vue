@@ -4,15 +4,14 @@
       <h2>ЛИСТ ПОЖЕЛАНИЙ</h2>
     </div>
     <div class="wishList__list">
-      <NuxtLink
-        :to="`/product/${product.id}`"
+      <div
         v-for="product in $store.state.wishList"
         :key="product.id"
         class="wishList__list__product"
       >
-        <img class="wishList__list__product__img" @click="close()" :src="product.img" alt="">
+        <img class="wishList__list__product__img" @click="close(); $router.push(`/product/${product.id}`)" :src="product.img" alt="">
         <div class="wishList__list__product__inf">
-          <div class="wishList__list__product__inf__name" @click="close()">
+          <div class="wishList__list__product__inf__name" @click="close(); $router.push(`/product/${product.id}`)">
             <p>{{ product.about }}</p>
             <h3>{{ product.name }}</h3>
           </div>
@@ -23,7 +22,7 @@
             </div>
           </div>
         </div>
-      </NuxtLink>
+      </div>
     </div>
   </div>
 </template>

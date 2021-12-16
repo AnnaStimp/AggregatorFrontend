@@ -89,7 +89,6 @@ export default {
       return parseFloat(str.split('?')[0].replace(',', '.'))
     },
     async getProductOfCategory () {
-      console.log('start', this.id_category)
       const response = await fetch(`http://127.0.0.1:5000/category/${this.id_category}`)
 
       const data = await response.json()
