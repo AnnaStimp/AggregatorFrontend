@@ -50,7 +50,7 @@ export default {
     }
   },
   mounted () {
-    this.getCategory()
+    this.$store.dispatch('getCategory')
   },
   methods: {
     close () {
@@ -58,18 +58,6 @@ export default {
       setTimeout(() => {
         document.querySelector('.catalog').classList.remove('nohover')
       }, 30)
-    },
-    async getCategory () {
-      const response = await fetch('http://127.0.0.1:5000/category')
-
-      const data = await response.json()
-      const res = []
-
-      for (let i = 0; i < data.length; i++) {
-        res.push({ id: data[i][0], name: data[i][1], title: data[i][2], img: data[i][3] })
-      }
-
-      this.$store.commit('addCategorys', res)
     }
   }
 }

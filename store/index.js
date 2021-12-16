@@ -23,4 +23,28 @@ export const mutations = {
 }
 
 export const actions = {
+  async getProducts ({ commit }) {
+    const response = await fetch('http://127.0.0.1:5000/product')
+
+    const data = await response.json()
+
+    const res = []
+    for (let i = 0; i < data.length; i++) {
+      res.push(data[i][0])
+    }
+
+    commit('addProducts', res)
+  },
+  async getCategory ({ commit }) {
+    const response = await fetch('http://127.0.0.1:5000/category')
+
+    const data = await response.json()
+    const res = []
+
+    for (let i = 0; i < data.length; i++) {
+      res.push({ id: data[i][0], name: data[i][1], title: data[i][2], img: data[i][3] })
+    }
+
+    commit('addCategorys', res)
+  }
 }

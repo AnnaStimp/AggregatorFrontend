@@ -81,7 +81,7 @@ export default {
   },
   mounted () {
     this.getNovely()
-    this.getProducts()
+    this.$store.dispatch('getProducts')
     this.timer = this.slideInterval()
   },
   destroyed () {
@@ -126,18 +126,6 @@ export default {
       }
 
       this.frontNovely = res
-    },
-    async getProducts () {
-      const response = await fetch('http://127.0.0.1:5000/product')
-
-      const data = await response.json()
-
-      const res = []
-      for (let i = 0; i < data.length; i++) {
-        res.push(data[i][0])
-      }
-
-      this.$store.commit('addProducts', res)
     }
   }
 }

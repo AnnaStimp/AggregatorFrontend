@@ -43,7 +43,11 @@ import Link from '@/components/SVG/link.vue'
 
 export default {
   name: 'Product',
-  validate ({ params, store }) {
+  async validate ({ params, store }) {
+    if (!store.state.products.length) {
+      await store.dispatch('getProducts')
+    }
+
     for (let i = 0; i < store.state.products.length; i++) {
       if (parseInt(params.idProduct) === store.state.products[i]) {
         return true

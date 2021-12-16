@@ -53,9 +53,14 @@ import Close from '@/components/SVG/close.vue'
 
 export default {
   name: 'ListProducts',
-  validate ({ params, store }) {
+  async validate ({ params, store }) {
+    if (!store.state.category.categorys.length) {
+      await store.dispatch('getCategory')
+    }
+
     for (let i = 0; i < store.state.category.categorys.length; i++) {
       if (params.category === store.state.category.categorys[i].name) {
+        store.commit('choiceCategory', store.state.category.categorys[i])
         return true
       }
     }
@@ -84,6 +89,7 @@ export default {
       return parseFloat(str.split('?')[0].replace(',', '.'))
     },
     async getProductOfCategory () {
+      console.log('start', this.id_category)
       const response = await fetch(`http://127.0.0.1:5000/category/${this.id_category}`)
 
       const data = await response.json()
@@ -103,7 +109,6 @@ export default {
         if (a.price < b.price) {
           return -1
         }
-        // a должно быть равным b
         return -1
       })
 
@@ -120,7 +125,6 @@ export default {
         if (a.price > b.price) {
           return -1
         }
-        // a должно быть равным b
         return 1
       })
 
