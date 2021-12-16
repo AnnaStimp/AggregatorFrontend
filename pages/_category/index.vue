@@ -1,7 +1,7 @@
 <template>
   <div class="listProducts">
     <div class="listProducts__head">
-      <img src="@/assets/images/BannerOfCategory/makeup.webp" alt="">
+      <img :src="imgOfProducts" alt="">
       <h1>{{ titleOfProducts }}</h1>
     </div>
     <div class="listProducts__body">
@@ -75,6 +75,7 @@ export default {
       products: [],
       id_category: this.$store.state.category.choiceCategory.id,
       titleOfProducts: this.$store.state.category.choiceCategory.title,
+      imgOfProducts: require(`@/assets/images/BannerOfCategory/${this.$store.state.category.choiceCategory.img}.webp`),
       openSortMenu: false,
       productsWithoutSort: [],
       sortType: '',
