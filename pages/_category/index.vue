@@ -7,14 +7,20 @@
     <div class="listProducts__body">
       <div class="listProducts__body__sorted">
         <div class="listProducts__body__sorted__sort">
-          <p>Сортировать</p>
-          <div class="listProducts__body__sorted__sort__dropMenu">
-            <p>по возрастанию цены</p>
-            <p>по убыванию цены</p>
+          <p @click="openSortMenu = !openSortMenu">Сортировать</p>
+          <div class="listProducts__body__sorted__sort__delete" @click="resetSort()">
+            <Close />
+          </div>
+          <div
+            class="listProducts__body__sorted__sort__dropMenu"
+            :class="{open: openSortMenu}"
+          >
+            <p @click="ascendingPrice()" :class="{choice: sortType === 'ascending'}">по возрастанию цены</p>
+            <p @click="descendingPrice()" :class="{choice: sortType === 'descending'}">по убыванию цены</p>
           </div>
         </div>
         <div class="listProducts__body__sorted__search">
-          <input class="listProducts__body__sorted__search__input" type="text">
+          <input class="listProducts__body__sorted__search__input" type="text" v-model="searchStr" @input="search()">
           <Magnifier class="listProducts__body__sorted__search__btn"/>
         </div>
       </div>
@@ -43,6 +49,7 @@
 import './listProducts.scss'
 
 import Magnifier from '@/components/SVG/magnifier.vue'
+import Close from '@/components/SVG/close.vue'
 
 export default {
   name: 'ListProducts',
@@ -55,13 +62,18 @@ export default {
     return false
   },
   components: {
-    Magnifier
+    Magnifier,
+    Close
   },
   data () {
     return {
-      products: [1, 2, 3, 4],
+      products: [],
       id_category: this.$store.state.category.choiceCategory.id,
-      titleOfProducts: this.$store.state.category.choiceCategory.title
+      titleOfProducts: this.$store.state.category.choiceCategory.title,
+      openSortMenu: false,
+      productsWithoutSort: [],
+      sortType: '',
+      searchStr: ''
     }
   },
   mounted () {
@@ -80,6 +92,57 @@ export default {
         res.push({ id_category: data[i][0], id_product: data[i][1], name: data[i][2], about: data[i][3], price: this.parseToFloat(data[i][4]), img: require(`@/assets/images/Products/${data[i][5]}.png`) })
       }
       this.products = res
+      this.productsWithoutSort = Object.assign([], res)
+    },
+    ascendingPrice () {
+      const items = this.products
+      items.sort(function (a, b) {
+        if (a.price > b.price) {
+          return 1
+        }
+        if (a.price < b.price) {
+          return -1
+        }
+        // a должно быть равным b
+        return -1
+      })
+
+      this.sortType = 'ascending'
+      this.products = items
+      this.openSortMenu = false
+    },
+    descendingPrice () {
+      const items = this.products
+      items.sort(function (a, b) {
+        if (a.price < b.price) {
+          return 1
+        }
+        if (a.price > b.price) {
+          return -1
+        }
+        // a должно быть равным b
+        return 1
+      })
+
+      this.sortType = 'descending'
+      this.products = items
+      this.openSortMenu = false
+    },
+    resetSort () {
+      this.sortType = ''
+      this.products = Object.assign([], this.productsWithoutSort)
+      this.openSortMenu = false
+    },
+    search () {
+      const newProduct = []
+
+      for (let i = 0; i < this.productsWithoutSort.length; i++) {
+        if (this.productsWithoutSort[i].name.toLowerCase().includes(this.searchStr.toLowerCase())) {
+          newProduct.push(this.productsWithoutSort[i])
+        }
+      }
+
+      this.products = newProduct
     }
   }
 }

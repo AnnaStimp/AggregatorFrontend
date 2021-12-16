@@ -43,6 +43,16 @@
                 border-bottom: 3px solid $mainColor3;
                 padding-bottom: 10px;
                 position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                &__delete {
+                    margin-right: 13px;
+                    opacity: 0;
+                    pointer-events: none;
+                    cursor: pointer;
+                }
 
                 & > p {
                     font-weight: 500;
@@ -51,10 +61,6 @@
                     color: $mainColor3;
                     margin-left: 13px;
                     cursor: pointer;
-
-                    &:hover {
-                        opacity: 0.8;
-                    }
                 }
 
                 &__dropMenu {
@@ -77,11 +83,33 @@
                         color: $mainColor4;
                         text-transform: lowercase;
                         cursor: pointer;
+                        transition: ease .3s;
+
+                        &:hover {
+                            margin-left: 10px;
+                            transition: ease .3s;
+                        }
+
+                        &.choice {
+                            text-shadow: 1px 1px 1px $mainColor3WithOpacity,
+                            1px 1px 1px $mainColor3WithOpacity;
+                        }
                     }
 
                     &.open {
                         opacity: 1;
                         user-select: auto;
+                    }
+                }
+
+                &:hover {
+                    & > p {
+                        opacity: 0.8;
+                    }
+                    
+                    & .listProducts__body__sorted__sort__delete {
+                        opacity: 0.8;
+                        pointer-events: auto;
                     }
                 }
             }
