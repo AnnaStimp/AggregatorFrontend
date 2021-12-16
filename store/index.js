@@ -3,7 +3,8 @@ export const state = () => ({
     categorys: [],
     choiceCategory: []
   },
-  products: []
+  products: [],
+  wishList: []
 })
 
 export const mutations = {
@@ -15,6 +16,9 @@ export const mutations = {
   },
   addProducts (state, productsId) {
     state.products = productsId
+  },
+  changeWishList (state, products) {
+    state.wishList = products
   }
 }
 

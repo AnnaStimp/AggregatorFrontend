@@ -12,7 +12,8 @@
         <div class="product__inf__aboutPrice__price">
           <p>{{ product.price }} ₽</p>
           <div class="product__inf__aboutPrice__price__btn" @click="likeProduct()">
-            <Like />
+            <Like v-if="!likelyProduct"/>
+            <BrokenHeart v-if="likelyProduct"/>
           </div>
         </div>
         <table class="product__inf__aboutPrice__table">
@@ -37,6 +38,7 @@
 import './product.scss'
 
 import Like from '@/components/SVG/like.vue'
+import BrokenHeart from '@/components/SVG/brokenHeart.vue'
 import Link from '@/components/SVG/link.vue'
 
 export default {
@@ -51,12 +53,25 @@ export default {
   },
   components: {
     Like,
-    Link
+    Link,
+    BrokenHeart
   },
   data () {
     return {
       prices: [],
-      product: []
+      product: [],
+      likelyProduct: false
+    }
+  },
+  watch: {
+    '$store.state.wishList' () {
+      for (let i = 0; i < this.$store.state.wishList.length; i++) {
+        if (this.$store.state.wishList[i].id === this.product.id) {
+          this.likelyProduct = true
+          return
+        }
+      }
+      this.likelyProduct = false
     }
   },
   mounted () {
@@ -66,7 +81,30 @@ export default {
     parseToFloat (str) {
       return parseFloat(str.split('?')[0].replace(',', '.'))
     },
+    dislikeProduct () {
+      this.likelyProduct = false
+
+      const like = JSON.parse(localStorage.getItem('likeProducts'))
+
+      const newLike = []
+
+      for (let i = 0; i < like.length; i++) {
+        if (like[i].id === this.product.id) {
+          continue
+        }
+
+        newLike.push(like[i])
+      }
+
+      this.$store.commit('changeWishList', newLike)
+      localStorage.setItem('likeProducts', JSON.stringify(newLike))
+    },
     likeProduct () {
+      if (this.likelyProduct) {
+        this.dislikeProduct()
+        return
+      }
+
       if (!localStorage.getItem('likeProducts')) {
         localStorage.setItem('likeProducts', JSON.stringify([]))
       }
@@ -79,9 +117,10 @@ export default {
         }
       }
 
+      this.likelyProduct = true
       like.push(this.product)
+      this.$store.commit('changeWishList', like)
       localStorage.setItem('likeProducts', JSON.stringify(like))
-      console.log(localStorage.getItem('likeProducts'))
     },
     async getInfAboutProduct () {
       const response = await fetch(`http://127.0.0.1:5000/product/${this.$route.params.idProduct}`)
@@ -101,7 +140,13 @@ export default {
 
       this.product = product
       this.prices = prices
-      console.log(min)
+
+      for (let i = 0; i < this.$store.state.wishList.length; i++) {
+        if (this.$store.state.wishList[i].id === product.id) {
+          this.likelyProduct = true
+          break
+        }
+      }
     }
   }
 }

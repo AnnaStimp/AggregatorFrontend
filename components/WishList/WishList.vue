@@ -6,7 +6,7 @@
     <div class="wishList__list">
       <NuxtLink
         :to="`/product/${product.id}`"
-        v-for="product in wishList"
+        v-for="product in $store.state.wishList"
         :key="product.id"
         class="wishList__list__product"
       >
@@ -18,7 +18,7 @@
           </div>
           <div class="wishList__list__product__inf__price">
             <p>{{ product.price }} ₽</p>
-            <div class="wishList__list__product__inf__price__btn">
+            <div class="wishList__list__product__inf__price__btn" @click="dislikeProduct(product)">
               <BrokenHeart />
             </div>
           </div>
@@ -41,7 +41,6 @@ export default {
   props: ['openWishList'],
   data () {
     return {
-      wishList: []
     }
   },
   mounted () {
@@ -52,7 +51,22 @@ export default {
       this.$emit('update:openWishList', false)
     },
     getWishList () {
-      this.wishList = JSON.parse(localStorage.getItem('likeProducts'))
+      this.$store.commit('changeWishList', JSON.parse(localStorage.getItem('likeProducts')))
+    },
+    dislikeProduct (product) {
+      const like = JSON.parse(localStorage.getItem('likeProducts'))
+
+      const newLike = []
+
+      for (let i = 0; i < like.length; i++) {
+        if (like[i].id === product.id) {
+          continue
+        }
+        newLike.push(like[i])
+      }
+
+      this.$store.commit('changeWishList', newLike)
+      localStorage.setItem('likeProducts', JSON.stringify(newLike))
     }
   }
 }
