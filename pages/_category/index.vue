@@ -87,7 +87,7 @@ export default {
   },
   methods: {
     parseToFloat (str) {
-      return parseFloat(str.split('?')[0].replace(',', '.'))
+      return parseFloat(str.split('?')[0].replace(',', '.').replace(/\s/g, ''))
     },
     async getProductOfCategory () {
       const response = await fetch(`http://127.0.0.1:5000/category/${this.id_category}`)
@@ -95,7 +95,7 @@ export default {
       const data = await response.json()
       const res = []
       for (let i = 0; i < data.length; i++) {
-        res.push({ id_category: data[i][0], id_product: data[i][1], name: data[i][2], about: data[i][3], price: this.parseToFloat(data[i][4]), img: require(`@/assets/images/Products/${data[i][5]}.png`) })
+        res.push({ id_category: data[i][0], id_product: data[i][1], name: data[i][2], about: data[i][3], price: this.parseToFloat(data[i][4]), img: require(`@/assets/images/Products/${data[i][5]}.webp`) })
       }
       this.products = res
       this.productsWithoutSort = Object.assign([], res)

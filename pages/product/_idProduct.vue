@@ -24,7 +24,7 @@
               class="product__inf__aboutPrice__table__body__item"
             >
               <td class="product__inf__aboutPrice__table__body__item__name"><p>{{ el.name }}</p></td>
-              <td class="product__inf__aboutPrice__table__body__item__price"><p>{{ el.price.toLocaleString('ru') }} ₽</p></td>
+              <td class="product__inf__aboutPrice__table__body__item__price"><p>{{ el.price }} ₽</p></td>
               <td class="product__inf__aboutPrice__table__body__item__link"><a :href="`${el.src}`" target="_blank"><Link /></a></td>
             </tr>
           </tbody>
@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     parseToFloat (str) {
-      return parseFloat(str.split('?')[0].replace(',', '.'))
+      return parseFloat(str.split('?')[0].replace(',', '.').replace(/\s/g, ''))
     },
     dislikeProduct () {
       this.likelyProduct = false
@@ -131,16 +131,16 @@ export default {
 
       const data = await response.json()
       const prices = []
-      let min = parseFloat(data[0][4])
+      let min = this.parseToFloat(data[0][4])
 
       for (let i = 0; i < data.length; i++) {
-        prices.push({ name: data[i][2], price: parseFloat(data[i][4]), src: data[i][5] })
-        if (parseFloat(data[i][4]) < min) {
-          min = parseFloat(data[i][4])
+        prices.push({ name: data[i][2], price: this.parseToFloat(data[i][4]), src: data[i][5] })
+        if (this.parseToFloat(data[i][4]) < min) {
+          min = this.parseToFloat(data[i][4])
         }
       }
 
-      const product = { id: data[0][0], name: data[0][1], about: data[0][3], price: min, img: require(`@/assets/images/Products/${data[0][6]}.png`) }
+      const product = { id: data[0][0], name: data[0][1], about: data[0][3], price: min, img: require(`@/assets/images/Products/${data[0][6]}.webp`) }
 
       this.product = product
       this.prices = prices

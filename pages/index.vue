@@ -114,7 +114,7 @@ export default {
       return time
     },
     parseToFloat (str) {
-      return parseFloat(str.split('?')[0].replace(',', '.'))
+      return parseFloat(str.split('?')[0].replace(',', '.').replace(/\s/g, ''))
     },
     async getNovely () {
       const response = await fetch('http://127.0.0.1:5000/new-product')
@@ -122,7 +122,7 @@ export default {
       const data = await response.json()
       const res = []
       for (let i = 0; i < data.length; i++) {
-        res.push({ id: data[i][0], name: data[i][1], about: data[i][2], price: this.parseToFloat(data[i][3]), img: require(`@/assets/images/Products/${data[i][4]}.png`) })
+        res.push({ id: data[i][0], name: data[i][1], about: data[i][2], price: this.parseToFloat(data[i][3]), img: require(`@/assets/images/Products/${data[i][4]}.webp`) })
       }
 
       this.frontNovely = res
