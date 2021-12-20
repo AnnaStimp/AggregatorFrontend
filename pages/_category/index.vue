@@ -141,7 +141,7 @@ export default {
       const newProduct = []
 
       for (let i = 0; i < this.productsWithoutSort.length; i++) {
-        if (this.productsWithoutSort[i].name.toLowerCase().includes(this.searchStr.toLowerCase())) {
+        if (this.productsWithoutSort[i].name.toLowerCase().includes(this.searchStr.toLowerCase()) || this.productsWithoutSort[i].about.toLowerCase().includes(this.searchStr.toLowerCase())) {
           newProduct.push(this.productsWithoutSort[i])
         }
       }
