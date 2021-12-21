@@ -49,11 +49,11 @@ export default {
       categorys: []
     }
   },
-  mounted () {
+  mounted () { // в данном блоке происходит выбов функции, которая выполняет запрос к серверу для получения категорий товаров
     this.$store.dispatch('getCategory')
   },
   methods: {
-    close () {
+    close () { // функция для закрытия окна Каталог
       document.querySelector('.catalog').classList.add('nohover')
       setTimeout(() => {
         document.querySelector('.catalog').classList.remove('nohover')

@@ -53,7 +53,7 @@ import Close from '@/components/SVG/close.vue'
 
 export default {
   name: 'ListProducts',
-  async validate ({ params, store }) {
+  async validate ({ params, store }) { // в данном блоке происходит валидация страницы перед ее отображением, если данные в базе данных существуют, то страница отображается
     if (!store.state.category.categorys.length) {
       await store.dispatch('getCategory')
     }
@@ -70,7 +70,7 @@ export default {
     Magnifier,
     Close
   },
-  data () {
+  data () { // хранение и объявление переменных
     return {
       products: [],
       id_category: this.$store.state.category.choiceCategory.id,
@@ -82,14 +82,14 @@ export default {
       searchStr: ''
     }
   },
-  mounted () {
+  mounted () { // запуск функции для получения товаров категории
     this.getProductOfCategory()
   },
   methods: {
-    parseToFloat (str) {
+    parseToFloat (str) { // функция, отвечающая за форматирование строки в число типа float
       return parseFloat(str.split('?')[0].replace(',', '.').replace(/\s/g, ''))
     },
-    async getProductOfCategory () {
+    async getProductOfCategory () { // функция, отвечающая за выполнение запроса в серверу для получения данных о товарах из выбранной категории
       const response = await fetch(`http://127.0.0.1:5000/category/${this.id_category}`)
 
       const data = await response.json()
@@ -100,7 +100,7 @@ export default {
       this.products = res
       this.productsWithoutSort = Object.assign([], res)
     },
-    ascendingPrice () {
+    ascendingPrice () { // функция, выполняющая сортировку товаров по возрастанию цены
       const items = this.products
       items.sort(function (a, b) {
         if (a.price > b.price) {
@@ -116,7 +116,7 @@ export default {
       this.products = items
       this.openSortMenu = false
     },
-    descendingPrice () {
+    descendingPrice () { // функция, выполняющая сортировку товаров по убыванию цены
       const items = this.products
       items.sort(function (a, b) {
         if (a.price < b.price) {
@@ -132,12 +132,12 @@ export default {
       this.products = items
       this.openSortMenu = false
     },
-    resetSort () {
+    resetSort () { // функция, отменяющая сортировку и возвращающая вид товаров в первоначальный вид
       this.sortType = ''
       this.products = Object.assign([], this.productsWithoutSort)
       this.openSortMenu = false
     },
-    search () {
+    search () { // функция, выполняющая поиск товаров по названию, введеному пользователем
       const newProduct = []
 
       for (let i = 0; i < this.productsWithoutSort.length; i++) {

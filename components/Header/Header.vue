@@ -44,7 +44,7 @@ export default {
     IconOfPage,
     BrokenHeart
   },
-  data () {
+  data () { // хранение и объявление переменных
     return {
       hoverCatalog: false,
       openWishList: false

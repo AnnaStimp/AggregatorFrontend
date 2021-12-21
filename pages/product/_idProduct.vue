@@ -43,7 +43,7 @@ import Link from '@/components/SVG/link.vue'
 
 export default {
   name: 'Product',
-  async validate ({ params, store }) {
+  async validate ({ params, store }) { // в данном блоке происходит валидация страницы перед ее отображением, если данные в базе данных существуют, то страница отображается
     if (!store.state.products.length) {
       await store.dispatch('getProducts')
     }
@@ -60,14 +60,14 @@ export default {
     Link,
     BrokenHeart
   },
-  data () {
+  data () { // хранение и объявление переменных
     return {
       prices: [],
       product: [],
       likelyProduct: false
     }
   },
-  watch: {
+  watch: { // в данном блоке происходит слежение за переменной, если она изменится, то данные будут обновлены
     '$store.state.wishList' () {
       for (let i = 0; i < this.$store.state.wishList.length; i++) {
         if (this.$store.state.wishList[i].id === this.product.id) {
@@ -78,14 +78,14 @@ export default {
       this.likelyProduct = false
     }
   },
-  mounted () {
+  mounted () { // запуск функции для получения информации о товаре
     this.getInfAboutProduct()
   },
   methods: {
-    parseToFloat (str) {
+    parseToFloat (str) { // функция, отвечающая за форматирование строки в число типа float
       return parseFloat(str.split('?')[0].replace(',', '.').replace(/\s/g, ''))
     },
-    dislikeProduct () {
+    dislikeProduct () { // функция, которая убирает товар из листа пожеланий
       this.likelyProduct = false
 
       const like = JSON.parse(localStorage.getItem('likeProducts'))
@@ -103,7 +103,7 @@ export default {
       this.$store.commit('changeWishList', newLike)
       localStorage.setItem('likeProducts', JSON.stringify(newLike))
     },
-    likeProduct () {
+    likeProduct () { // функция, которая добавляет товар в лист пожеланий
       if (this.likelyProduct) {
         this.dislikeProduct()
         return
@@ -126,7 +126,7 @@ export default {
       this.$store.commit('changeWishList', like)
       localStorage.setItem('likeProducts', JSON.stringify(like))
     },
-    async getInfAboutProduct () {
+    async getInfAboutProduct () { // функция, отвечающая за выполнение запроса в серверу для получения данных о товаре
       const response = await fetch(`http://127.0.0.1:5000/product/${this.$route.params.idProduct}`)
 
       const data = await response.json()

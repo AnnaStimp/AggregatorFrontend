@@ -4,6 +4,7 @@
       <h2>ЛИСТ ПОЖЕЛАНИЙ</h2>
     </div>
     <div class="wishList__list">
+      <p class="wishList__list__none" v-if="$store.state.wishList.length == 0">В листе пожеланий нет товаров</p>
       <div
         v-for="product in $store.state.wishList"
         :key="product.id"
@@ -42,17 +43,17 @@ export default {
     return {
     }
   },
-  mounted () {
+  mounted () { // в данном блоке вызывается функция, которая осуществляет получение данных о товарах в листе пожеланий
     this.getWishList()
   },
   methods: {
-    close () {
+    close () { // функция, отвещающая за закрытие окна с листом пожеланий
       this.$emit('update:openWishList', false)
     },
-    getWishList () {
+    getWishList () { // функция, получающая данные из localStorage и отправляющая эти данные в переменную
       this.$store.commit('changeWishList', JSON.parse(localStorage.getItem('likeProducts')))
     },
-    dislikeProduct (product) {
+    dislikeProduct (product) { // функция, удаляющая товар из листа пожеланий
       const like = JSON.parse(localStorage.getItem('likeProducts'))
 
       const newLike = []
