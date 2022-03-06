@@ -44,6 +44,10 @@ import Link from '@/components/SVG/link.vue'
 export default {
   name: 'Product',
   async validate ({ params, store }) { // в данном блоке происходит валидация страницы перед ее отображением, если данные в базе данных существуют, то страница отображается
+    if (isNaN(params.idProduct)) {
+      return false
+    }
+
     if (!store.state.products.length) {
       await store.dispatch('getProducts')
     }
