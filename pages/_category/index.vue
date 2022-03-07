@@ -40,6 +40,7 @@
             <p class="listProducts__body__products__product__inf__price">{{ product.price }} ₽</p>
           </div>
         </NuxtLink>
+        <p v-if="products.length == 0" class="listProducts__body__products__none">Товаров по вашему запросу не найдено</p>
       </div>
     </div>
   </div>
@@ -136,6 +137,10 @@ export default {
       this.sortType = ''
       this.products = Object.assign([], this.productsWithoutSort)
       this.openSortMenu = false
+
+      if (this.searchStr) {
+        this.search()
+      }
     },
     search () { // функция, выполняющая поиск товаров по названию, введеному пользователем
       const newProduct = []
@@ -147,6 +152,14 @@ export default {
       }
 
       this.products = newProduct
+
+      if (this.sortType === 'ascending') {
+        this.ascendingPrice()
+      }
+
+      if (this.sortType === 'descending') {
+        this.descendingPrice()
+      }
     }
   }
 }
