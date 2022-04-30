@@ -122,7 +122,7 @@ export default {
       const data = await response.json()
       const res = []
       for (let i = 0; i < data.length; i++) {
-        res.push({ id: data[i][0], name: data[i][1], about: data[i][2], price: this.parseToFloat(data[i][3]), img: require(`@/assets/images/Products/${data[i][4]}.webp`) })
+        res.push({ id: data[i][0], name: data[i][1], about: data[i][2], price: this.parseToFloat(data[i][3]), img: data[i][4] })
       }
 
       this.frontNovely = res

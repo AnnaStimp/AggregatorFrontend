@@ -96,7 +96,7 @@ export default {
       const data = await response.json()
       const res = []
       for (let i = 0; i < data.length; i++) {
-        res.push({ id_category: data[i][0], id_product: data[i][1], name: data[i][2], about: data[i][3], price: this.parseToFloat(data[i][4]), img: require(`@/assets/images/Products/${data[i][5]}.webp`) })
+        res.push({ id_category: data[i][0], id_product: data[i][1], name: data[i][2], about: data[i][3], price: this.parseToFloat(data[i][4]), img: data[i][5] })
       }
       this.products = res
       this.productsWithoutSort = Object.assign([], res)

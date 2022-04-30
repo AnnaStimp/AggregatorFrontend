@@ -144,7 +144,7 @@ export default {
         }
       }
 
-      const product = { id: data[0][0], name: data[0][1], about: data[0][3], price: min, img: require(`@/assets/images/Products/${data[0][6]}.webp`) }
+      const product = { id: data[0][0], name: data[0][1], about: data[0][3], price: min, img: data[0][6] }
 
       this.product = product
       this.prices = prices
