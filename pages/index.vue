@@ -32,11 +32,17 @@
       <h1 class="homePage__novelty__header">Новинки</h1>
       <div class="homePage__novelty__sliderWrap">
         <div class="homePage__novelty__sliderWrap__control">
-          <RightArrow class="homePage__novelty__sliderWrap__control__left"/>
-          <RightArrow class="homePage__novelty__sliderWrap__control__right"/>
+          <div class="homePage__novelty__sliderWrap__control__left" @click="slideNovely('l')">
+            <RightArrow />
+          </div>
+          <div class="homePage__novelty__sliderWrap__control__right" @click="slideNovely('r')">
+            <RightArrow />
+          </div>
         </div>
         <div class="homePage__novelty__sliderWrap__slider">
-          <div class="homePage__novelty__sliderWrap__slider__slide">
+          <div
+            class="homePage__novelty__sliderWrap__slider__slide"
+          >
             <NuxtLink
               :to="`/product/${product.id}`"
               v-for="(product, index) in frontNovely"
@@ -46,7 +52,7 @@
               <img :src="product.img" alt="">
               <div
                 class="homePage__novelty__sliderWrap__slider__slide__product__inf"
-                :class="{left: index >= 2}"
+                :class="{left: [2,3,6,7,10,11,14,15].includes(index)}"
               >
                 <p class="homePage__novelty__sliderWrap__slider__slide__product__inf__about">{{ product.about }}</p>
                 <h3 class="homePage__novelty__sliderWrap__slider__slide__product__inf__name">{{ product.name }}</h3>
@@ -76,7 +82,8 @@ export default {
       frontSlide: 0,
       timer: 0,
       frontNovely: [],
-      pictures: []
+      pictures: [],
+      noveltySlide: 0
     }
   },
   mounted () { // в данном блоке происходит запуск функции для получениях новинок, категорий товаров и запуска слайдера
@@ -126,6 +133,23 @@ export default {
       }
 
       this.frontNovely = res
+    },
+    slideNovely (side) {
+      let max = -300
+
+      if (document.documentElement.clientWidth <= 1130) {
+        max = -700
+      }
+
+      if (side === 'l' && this.noveltySlide < 0) {
+        this.noveltySlide += 100
+      }
+
+      if (side === 'r' && this.noveltySlide > max) {
+        this.noveltySlide -= 100
+      }
+
+      document.querySelector('.homePage__novelty__sliderWrap__slider__slide').style.transform = `translateX(${this.noveltySlide}%)`
     }
   }
 }
