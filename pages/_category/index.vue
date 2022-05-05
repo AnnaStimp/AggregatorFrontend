@@ -17,6 +17,7 @@
           >
             <p @click="ascendingPrice()" :class="{choice: sortType === 'ascending'}">по возрастанию цены</p>
             <p @click="descendingPrice()" :class="{choice: sortType === 'descending'}">по убыванию цены</p>
+            <p @click="popularity()" :class="{choice: sortType === 'popularity'}">по популярности</p>
           </div>
         </div>
         <div class="listProducts__body__sorted__search">
@@ -96,7 +97,7 @@ export default {
       const data = await response.json()
       const res = []
       for (let i = 0; i < data.length; i++) {
-        res.push({ id_category: data[i][0], id_product: data[i][1], name: data[i][2], about: data[i][3], price: this.parseToFloat(data[i][4]), img: data[i][5] })
+        res.push({ id_category: data[i][0], id_product: data[i][1], name: data[i][2], about: data[i][3], price: this.parseToFloat(data[i][4]), img: data[i][5], viewing: data[i][6] })
       }
       this.products = res
       this.productsWithoutSort = Object.assign([], res)
@@ -130,6 +131,22 @@ export default {
       })
 
       this.sortType = 'descending'
+      this.products = items
+      this.openSortMenu = false
+    },
+    popularity () { // функция, выполняющая сортировку товаров по популярности
+      const items = this.products
+      items.sort(function (a, b) {
+        if (a.viewing < b.viewing) {
+          return 1
+        }
+        if (a.viewing > b.viewing) {
+          return -1
+        }
+        return 1
+      })
+
+      this.sortType = 'popularity'
       this.products = items
       this.openSortMenu = false
     },

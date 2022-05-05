@@ -82,8 +82,9 @@ export default {
       this.likelyProduct = false
     }
   },
-  mounted () { // запуск функции для получения информации о товаре
-    this.getInfAboutProduct()
+  async mounted () { // запуск функции для получения информации о товаре
+    await this.getInfAboutProduct()
+    await this.viewing()
   },
   methods: {
     parseToFloat (str) { // функция, отвечающая за форматирование строки в число типа float
@@ -155,6 +156,15 @@ export default {
           break
         }
       }
+    },
+    async viewing () {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id_product: this.product.id })
+      }
+
+      await fetch('http://127.0.0.1:5000/product_viewing', requestOptions)
     }
   }
 }
