@@ -150,3 +150,112 @@
         }
     }
 }
+
+@media screen and (max-width: 1690px) {
+    .wishList {
+        top: 45px;
+
+        &.open {
+            height: calc(100vh - 45px);
+        }
+
+        &__header {
+            margin-bottom: 35px;
+
+            & h2 {
+                font-size: 45px;
+                line-height: 55px;        
+            }
+        }
+
+        &__list {
+            height: calc(100% - 90px);
+
+            &__product {
+                height: 260px;
+                margin-bottom: 27px;
+
+                & img {
+                    width: 260px;
+                }
+
+                &__inf__name {
+                    & p {
+                        font-size: 16px;
+                        line-height: 18px;
+                    }
+
+                    & h3 {
+                        font-size: 26px;
+                        line-height: 30px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1470px) {
+    .wishList {
+        &.open {
+            padding: 15px 20px 15px 40px;
+        }
+
+        &__list__product {
+            height: 225px;
+
+            & img {
+                width: 225px;
+            }
+
+            &__inf {
+                &__name {
+                    & p {
+                        font-size: 13px;
+                        line-height: 15px;
+                    }
+    
+                    & h3 {
+                        font-size: 22px;
+                        line-height: 25px;
+                    }
+                }
+
+                &__price {
+                    & p {
+                        font-size: 25px;
+                        line-height: 25px;
+                    }
+
+                    &__btn {
+                        width: 44px;
+                        height: 40px;
+
+                        & svg {
+                            width: 13px;
+                            height: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .wishList {
+        width: 50%;
+
+        &__list__product {
+            height: 185px;
+
+            & img {
+                width: 185px;
+            }
+
+            &__inf__name {
+                margin-bottom: 45px;
+            }
+        }
+    }
+}

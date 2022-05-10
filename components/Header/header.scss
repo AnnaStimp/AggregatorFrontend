@@ -63,6 +63,37 @@
     }
 }
 
+@media screen and (max-width: 1690px) {
+    .header {
+        height: 45px;
+
+        &__catalog {
+            & svg {
+                width: 27px;
+                height: 27px;
+            }
+
+            & p {
+                font-size: 33px;
+                line-height: 35px;
+            }
+        }
+
+        &__icon {
+            margin-right: 130px;
+
+            & svg {
+                height: 40px;
+            }
+        }
+
+        &__likes svg {
+            height: 33px;
+            width: 33px;
+        }
+    }
+}
+
 @media screen and (max-width: 1050px) {
     .header {
         &__catalog {
@@ -89,12 +120,6 @@
             height: 30px;
             width: 30px;
         }
-    }
-}
-
-@media screen and (max-width: 785px) {
-    .header {
-        height: 45px;
     }
 }
 
