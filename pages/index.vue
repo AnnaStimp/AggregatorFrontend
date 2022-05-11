@@ -4,17 +4,17 @@
       <div class="homePage__sliderWrap__slider">
         <div
           class="homePage__sliderWrap__slider__slide"
-          v-for="(i, index) in slides"
+          v-for="(slide, index) in slides"
           :key="index"
         >
-          <img src="@/assets/images/HomePage/banner.webp" alt="">
+          <img :src="require(`@/assets/images/HomePage/${slide.img}.webp`)" alt="">
           <div class="homePage__sliderWrap__slider__slide__inf">
-            <h3>Yves Saint Laurent до −35%</h3>
-            <p>только 11 и 12 сентября</p>
-            <div class="homePage__sliderWrap__slider__slide__inf__btn">
+            <h3>{{ slide.head }}</h3>
+            <p>{{ slide.text }}</p>
+            <a class="homePage__sliderWrap__slider__slide__inf__btn" :href="slide.url" target="_blank">
               <p>Узнать подробнее</p>
               <RightArrow />
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -78,7 +78,12 @@ export default {
   },
   data () { // в данном блоке происходит объявление и хранение переменных
     return {
-      slides: [1, 2, 3, 4],
+      slides: [
+        { head: 'Angel Schlesser', text: 'только 10 и 11 мая', img: 'banner_Angel_Schlesser', url: 'https://goldapple.ru/brands/angel-schlesser' },
+        { head: 'new! new! new!', text: 'познакомьтесь с новинками', img: 'banner_new', url: 'https://goldapple.ru/novinki' },
+        { head: 'Darling*', text: 'скидки до −20%', img: 'banner_Darling', url: 'https://goldapple.ru/brands/darling' },
+        { head: 'Lamel x Gold Apple', text: 'фиксирующее мыло для бровей', img: 'banner_Lamel', url: 'https://goldapple.ru/brands/lamel-professional?producttype=51429' }
+      ],
       frontSlide: 0,
       timer: 0,
       frontNovely: [],
