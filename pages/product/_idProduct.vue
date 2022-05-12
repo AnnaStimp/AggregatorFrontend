@@ -157,13 +157,15 @@ export default {
         }
       }
     },
+    // функция, реагирующая на загрузку страницы
     async viewing () {
+      // подготовка данных к отправке запроса
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id_product: this.product.id })
       }
-
+      // выполнение запроса
       await fetch('http://127.0.0.1:5000/product_viewing', requestOptions)
     }
   }
