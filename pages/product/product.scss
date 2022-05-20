@@ -162,7 +162,453 @@
 
 @media screen and (max-width: 1690px) {
     .product {
+        padding: 130px 40px 0 40px;
+        
+        &__img {
+            width: 680px;
+            height: 610px;
+        }
+
+        &__inf {
+            &__name {
+                & > p {
+                    font-size: 18px;
+                    line-height: 22px;
+                }
+
+                & > h2 {
+                    font-size: 40px;
+                    line-height: 55px;
+                }
+            }
+
+            &__aboutPrice {
+                &__price {
+                    & p {
+                        font-size: 45px;
+                        line-height: 55px;
+                    }
+
+                    &__btn {
+                        width: 60px;
+                        height: 55px;
+
+                        & svg {
+                            width: 25px;
+                            height: 25px;
+                        }
+                    }
+                }
+
+                &__table {
+                    width: 570px;
+
+                    &__body {
+                        max-height: 222px;
+
+                        &__item {
+                            &__name {
+                                padding: 15px 0;
+    
+                                & p {
+                                    font-size: 33px;
+                                    line-height: 35px;
+                                }
+                            }
+    
+                            &__price {
+                                padding: 15px 0;
+    
+                                & p {
+                                    font-size: 33px;
+                                    line-height: 35px;
+                                }
+                            }
+    
+                            &__link {
+                                padding: 15px 0;
+    
+                                & svg {
+                                    width: 40px;
+                                    height: 40px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1470px) {
+    .product {
+        &__img {
+            width: 570px;
+            height: 540px;
+        }
+
+        &__inf {
+            &__name {
+                width: 570px;
+                margin-bottom: 40px;
+
+                & > p {
+                    font-size: 16px;
+                    line-height: 20px;
+                }
+
+                & > h2 {
+                    line-height: 50px;
+                }
+            }
+
+            &__aboutPrice {
+                margin-left: 110px;
+
+                &__price {
+                    margin-bottom: 78px;
+                }
+
+                &__table {
+                    width: 515px;
+
+                    &__body {
+                        max-height: 206px;
+
+                        &__item {
+                            &__name {
+                                padding: 13px 0;
+    
+                                & p {
+                                    font-size: 30px;
+                                    line-height: 32px;
+                                }
+                            }
+    
+                            &__price {
+                                padding: 13px 0;
+    
+                                & p {
+                                    font-size: 30px;
+                                    line-height: 32px;
+                                }
+                            }
+    
+                            &__link {
+                                padding: 13px 0;
+    
+                                & svg {
+                                    width: 38px;
+                                    height: 38px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .product {
         padding: 100px 40px 0 40px;
         
+        &__img {
+            width: 475px;
+            height: 450px;
+        }
+
+        &__inf {
+            &__name {
+                width: 510px;
+
+                & > h2 {
+                    font-size: 36px;
+                    line-height: 48px;
+                    margin-top: 10px;
+                }
+            }
+
+            &__aboutPrice {
+                margin-left: 90px;
+
+                &__price {
+                    & p {
+                        font-size: 35px;
+                        line-height: 45px;
+                    }
+
+                    &__btn {
+                        width: 50px;
+                        height: 45px;
+
+                        & svg {
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+                }
+
+                &__table {
+                    width: 485px;
+
+                    &__body {
+                        max-height: 177px;
+
+                        &__item {
+                            &__name {
+                                padding: 10px 0;
+    
+                                & p {
+                                    font-size: 26px;
+                                    line-height: 30px;
+                                }
+                            }
+    
+                            &__price {
+                                padding: 10px 0;
+    
+                                & p {
+                                    font-size: 26px;
+                                    line-height: 30px;
+                                }
+                            }
+    
+                            &__link {
+                                padding: 10px 0;
+    
+                                & svg {
+                                    width: 35px;
+                                    height: 35px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1115px) {
+    .product {
+        padding: 80px 40px 0 40px;
+        
+        &__img {
+            width: 410px;
+            height: 360px;
+            margin-top: 22px;
+        }
+
+        &__inf {
+            &__name {
+                width: 450px;
+
+                & > p {
+                    font-size: 12px;
+                    line-height: 15px;
+                }
+
+                & > h2 {
+                    font-size: 26px;
+                    line-height: 30px;
+                }
+            }
+
+            &__aboutPrice {
+                margin-left: 90px;
+
+                &__price {
+                    margin-bottom: 55px;
+
+                    & p {
+                        font-size: 28px;
+                        line-height: 32px;
+                    }
+
+                    &__btn {
+                        width: 40px;
+                        height: 35px;
+
+                        & svg {
+                            width: 18px;
+                            height: 18px;
+                        }
+                    }
+                }
+
+                &__table {
+                    width: 400px;
+
+                    &__body {
+                        max-height: 162px;
+
+                        &__item {
+                            &__name {
+                                & p {
+                                    font-size: 22px;
+                                    line-height: 25px;
+                                }
+                            }
+    
+                            &__price {
+                                & p {
+                                    font-size: 22px;
+                                    line-height: 25px;
+                                }
+                            }
+    
+                            &__link {
+                                & svg {
+                                    width: 30px;
+                                    height: 30px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 970px) {
+    .product {
+        &__inf {
+            &__name {
+                width: 400px;
+            }
+
+            &__aboutPrice {
+                margin-left: 45px;
+
+                &__table {
+                    width: 350px;
+
+                    &__body {
+                        max-height: 135px;
+
+                        &__item {
+                            &__name {
+                                padding: 8px 0;
+
+                                & p {
+                                    font-size: 20px;
+                                    line-height: 22px;
+                                }
+                            }
+    
+                            &__price {
+                                padding: 8px 0;
+
+                                & p {
+                                    font-size: 20px;
+                                    line-height: 22px;
+                                }
+                            }
+    
+                            &__link {
+                                padding: 8px 0;
+
+                                & svg {
+                                    width: 25px;
+                                    height: 25px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .product {
+        &__img {   
+            width: 300px;
+            height: 290px;
+            margin-top: 18px;
+        }
+
+        &__inf {
+            &__name {
+                width: 380px;
+
+                & > p {
+                    font-size: 10px;
+                    line-height: 12px;
+                }
+
+                & > h2 {
+                    font-size: 22px;
+                    line-height: 25px;
+                    margin-top: 6px;
+                }
+            }
+
+            &__aboutPrice {
+                margin-left: 40px;
+
+                &__price {
+                    margin-bottom: 50px;
+
+                    & p {
+                        font-size: 24px;
+                        line-height: 26px;
+                    }
+
+                    &__btn {
+                        width: 35px;
+                        height: 30px;
+                        margin-left: 25px;
+
+                        & svg {
+                            width: 15px;
+                            height: 15px;
+                        }
+                    }
+                }
+
+                &__table {
+                    width: 270px;
+
+                    &__body {
+                        max-height: 126px;
+
+                        &__item {
+                            &__name {
+                                padding: 8px 0;
+
+                                & p {
+                                    font-size: 15px;
+                                    line-height: 18px;
+                                }
+                            }
+    
+                            &__price {
+                                padding: 8px 0;
+
+                                & p {
+                                    font-size: 15px;
+                                    line-height: 18px;
+                                }
+                            }
+    
+                            &__link {
+                                padding: 8px 0;
+
+                                & svg {
+                                    width: 22px;
+                                    height: 22px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

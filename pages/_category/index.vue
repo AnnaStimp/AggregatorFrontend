@@ -177,6 +177,10 @@ export default {
       if (this.sortType === 'descending') {
         this.descendingPrice()
       }
+
+      if (this.sortType === 'popularity') {
+        this.popularity()
+      }
     }
   }
 }
