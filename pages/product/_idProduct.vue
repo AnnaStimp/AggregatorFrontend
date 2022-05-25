@@ -137,7 +137,7 @@ export default {
       const data = await response.json()
       const prices = []
       let min = this.parseToFloat(data[0][4])
-
+      console.log(data)
       for (let i = 0; i < data.length; i++) {
         prices.push({ name: data[i][2], price: this.parseToFloat(data[i][4]), src: data[i][5] })
         if (this.parseToFloat(data[i][4]) < min) {
