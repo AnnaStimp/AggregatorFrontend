@@ -129,7 +129,7 @@ export default {
       return parseFloat(str.split('?')[0].replace(',', '.').replace(/\s/g, ''))
     },
     async getNovely () { // функция, отвечающая за осуществления запроса к серверу для получения новинок
-      const response = await fetch('http://127.0.0.1:5000/new-product')
+      const response = await fetch('http://cosmeticsaggregator.ru/api/new-product')
 
       const data = await response.json()
       const res = []

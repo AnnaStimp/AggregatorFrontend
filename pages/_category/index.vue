@@ -92,7 +92,7 @@ export default {
       return parseFloat(str.split('?')[0].replace(',', '.').replace(/\s/g, ''))
     },
     async getProductOfCategory () { // функция, отвечающая за выполнение запроса в серверу для получения данных о товарах из выбранной категории
-      const response = await fetch(`http://127.0.0.1:5000/category/${this.id_category}`)
+      const response = await fetch(`http://cosmeticsaggregator.ru/api/category/${this.id_category}`)
 
       const data = await response.json()
       const res = []

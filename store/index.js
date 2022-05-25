@@ -24,7 +24,7 @@ export const mutations = {
 
 export const actions = {
   async getProducts ({ commit }) {
-    const response = await fetch('http://127.0.0.1:5000/product')
+    const response = await fetch('http://cosmeticsaggregator.ru/api/product')
 
     const data = await response.json()
 
@@ -36,7 +36,7 @@ export const actions = {
     commit('addProducts', res)
   },
   async getCategory ({ commit }) {
-    const response = await fetch('http://127.0.0.1:5000/category')
+    const response = await fetch('http://cosmeticsaggregator.ru/api/category')
 
     const data = await response.json()
     const res = []

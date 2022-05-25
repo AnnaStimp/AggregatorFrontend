@@ -132,7 +132,7 @@ export default {
       localStorage.setItem('likeProducts', JSON.stringify(like))
     },
     async getInfAboutProduct () { // функция, отвечающая за выполнение запроса в серверу для получения данных о товаре
-      const response = await fetch(`http://127.0.0.1:5000/product/${this.$route.params.idProduct}`)
+      const response = await fetch(`http://cosmeticsaggregator.ru/api/product/${this.$route.params.idProduct}`)
 
       const data = await response.json()
       const prices = []
@@ -166,7 +166,7 @@ export default {
         body: JSON.stringify({ id_product: this.product.id })
       }
       // выполнение запроса
-      await fetch('http://127.0.0.1:5000/product_viewing', requestOptions)
+      await fetch('http://cosmeticsaggregator.ru/api/product_viewing', requestOptions)
     }
   }
 }
