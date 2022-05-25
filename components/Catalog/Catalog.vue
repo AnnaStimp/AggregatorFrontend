@@ -11,14 +11,14 @@
     </div>
     <div class="catalog__commercial">
       <div class="catalog__commercial__item">
-        <img src="@/assets/images/commercial/product1.png" alt="">
+        <img :src="require(`@/assets/images/commercial/product1.png`)" alt="">
         <div class="catalog__commercial__item__inf">
           <h3 class="catalog__commercial__item__inf__name">Make Up For Ever</h3>
           <p class="catalog__commercial__item__inf__about">новая оттеночная пудра для лица</p>
         </div>
       </div>
       <div class="catalog__commercial__item">
-        <img src="@/assets/images/commercial/product2.png" alt="">
+        <img :src="require(`@/assets/images/commercial/product2.png`)" alt="">
         <div class="catalog__commercial__item__inf">
           <h3 class="catalog__commercial__item__inf__name">Shik</h3>
           <p class="catalog__commercial__item__inf__about">маска для увлажнения лица</p>
