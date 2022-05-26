@@ -162,6 +162,7 @@ export default {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id_product: this.product.id })
       }
+      console.log(requestOptions)
       // выполнение запроса
       await fetch('http://cosmeticsaggregator.ru/api/product_viewing', requestOptions)
     }
