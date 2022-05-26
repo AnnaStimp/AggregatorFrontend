@@ -134,7 +134,7 @@ export default {
       const data = await response.json()
       const prices = []
       let min = data[0][4]
-      console.log(data)
+
       for (let i = 0; i < data.length; i++) {
         prices.push({ name: data[i][2], price: data[i][4], src: data[i][5] })
         if (data[i][4] < min) {
