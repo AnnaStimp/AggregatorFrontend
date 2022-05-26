@@ -87,9 +87,6 @@ export default {
     await this.viewing()
   },
   methods: {
-    parseToFloat (str) { // функция, отвечающая за форматирование строки в число типа float
-      return parseFloat(str.split('?')[0].replace(',', '.').replace(/\s/g, ''))
-    },
     dislikeProduct () { // функция, которая убирает товар из листа пожеланий
       this.likelyProduct = false
 
@@ -136,12 +133,12 @@ export default {
 
       const data = await response.json()
       const prices = []
-      let min = this.parseToFloat(data[0][4])
+      let min = data[0][4]
       console.log(data)
       for (let i = 0; i < data.length; i++) {
-        prices.push({ name: data[i][2], price: this.parseToFloat(data[i][4]), src: data[i][5] })
-        if (this.parseToFloat(data[i][4]) < min) {
-          min = this.parseToFloat(data[i][4])
+        prices.push({ name: data[i][2], price: data[i][4], src: data[i][5] })
+        if (data[i][4] < min) {
+          min = data[i][4]
         }
       }
 

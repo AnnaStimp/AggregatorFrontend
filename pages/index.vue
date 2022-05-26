@@ -125,16 +125,13 @@ export default {
 
       return time
     },
-    parseToFloat (str) { // функция, отвечающая за форматирование строки в число типа float
-      return parseFloat(str.split('?')[0].replace(',', '.').replace(/\s/g, ''))
-    },
     async getNovely () { // функция, отвечающая за осуществления запроса к серверу для получения новинок
       const response = await fetch('http://cosmeticsaggregator.ru/api/new-product')
 
       const data = await response.json()
       const res = []
       for (let i = 0; i < data.length; i++) {
-        res.push({ id: data[i][0], name: data[i][1], about: data[i][2], price: this.parseToFloat(data[i][3]), img: data[i][4] })
+        res.push({ id: data[i][0], name: data[i][1], about: data[i][2], price: data[i][3], img: data[i][4] })
       }
 
       this.frontNovely = res

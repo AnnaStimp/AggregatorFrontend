@@ -88,16 +88,13 @@ export default {
     this.getProductOfCategory()
   },
   methods: {
-    parseToFloat (str) { // функция, отвечающая за форматирование строки в число типа float
-      return parseFloat(str.split('?')[0].replace(',', '.').replace(/\s/g, ''))
-    },
     async getProductOfCategory () { // функция, отвечающая за выполнение запроса в серверу для получения данных о товарах из выбранной категории
       const response = await fetch(`http://cosmeticsaggregator.ru/api/category/${this.id_category}`)
 
       const data = await response.json()
       const res = []
       for (let i = 0; i < data.length; i++) {
-        res.push({ id_category: data[i][0], id_product: data[i][1], name: data[i][2], about: data[i][3], price: this.parseToFloat(data[i][4]), img: data[i][5], viewing: data[i][6] })
+        res.push({ id_category: data[i][0], id_product: data[i][1], name: data[i][2], about: data[i][3], price: data[i][4], img: data[i][5], viewing: data[i][6] })
       }
       this.products = res
       this.productsWithoutSort = Object.assign([], res)
