@@ -164,7 +164,8 @@ export default {
       }
       console.log(requestOptions)
       // выполнение запроса
-      await fetch('http://cosmeticsaggregator.ru/api/product_viewing', requestOptions)
+      const response = await fetch('http://cosmeticsaggregator.ru/api/product_viewing', requestOptions)
+      console.log(response)
     }
   }
 }
