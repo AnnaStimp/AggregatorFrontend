@@ -135,7 +135,6 @@ export default {
       const prices = []
       let min = data[0][4]
 
-      console.log(data)
       for (let i = 0; i < data.length; i++) {
         prices.push({ name: data[i][2], price: data[i][4], src: data[i][5] })
         if (data[i][4] < min) {
@@ -148,7 +147,6 @@ export default {
       this.product = product
       this.prices = prices
 
-      console.log(this.$store.state.wishList)
       for (let i = 0; i < this.$store.state.wishList.length; i++) {
         if (this.$store.state.wishList[i].id === product.id) {
           this.likelyProduct = true
@@ -164,10 +162,8 @@ export default {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id_product: this.product.id })
       }
-      console.log(requestOptions)
       // выполнение запроса
       const response = await fetch('http://cosmeticsaggregator.ru/api/product_viewing', requestOptions)
-      console.log(response)
     }
   }
 }
