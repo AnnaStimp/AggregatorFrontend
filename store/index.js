@@ -18,7 +18,7 @@ export const mutations = {
     state.products = productsId
   },
   changeWishList (state, products) {
-    state.wishList = products
+    state.wishList = products || []
   }
 }
 
