@@ -126,7 +126,7 @@ export default {
       return time
     },
     async getNovely () { // функция, отвечающая за осуществления запроса к серверу для получения новинок
-      const response = await fetch('http://cosmeticsaggregator.ru/api/new-product')
+      const response = await fetch('https://cosmeticsaggregator.ru/api/new-product')
 
       const data = await response.json()
       const res = []

@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     async getProductOfCategory () { // функция, отвечающая за выполнение запроса в серверу для получения данных о товарах из выбранной категории
-      const response = await fetch(`http://cosmeticsaggregator.ru/api/category/${this.id_category}`)
+      const response = await fetch(`https://cosmeticsaggregator.ru/api/category/${this.id_category}`)
 
       const data = await response.json()
       const res = []
